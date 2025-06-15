@@ -1,0 +1,169 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: rgba($white, 0.45);
+  backdrop-filter: blur(10px);
+  transition: all $transition-normal;
+  border-bottom: 1px solid transparent;
+
+  &--scrolled {
+    background-color: rgba($white, 0.98);
+    border-bottom-color: rgba($secondary, 0.2);
+    box-shadow: $shadow-md;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $spacing-sm 0;
+    height: 60px; // Fixed header height
+
+    @media (min-width: $breakpoint-md) {
+      padding: $spacing-md 0;
+      height: 70px; // Fixed header height for desktop
+    }
+  }
+
+  &__logo {
+    h1 {
+      font-size: $font-size-lg;
+      font-weight: $font-weight-bold;
+      color: $primary;
+      margin: 0;
+
+      @media (min-width: $breakpoint-md) {
+        font-size: $font-size-xl;
+      }
+    }
+
+    // Logo image styles (for when you add your logo)
+    &-img {
+      max-height: 150px; // Constrained to fit within header
+      margin-left: -20px;
+      margin-top: 15px;
+      width: auto;
+      object-fit: contain;
+
+      @media (min-width: $breakpoint-md) {
+        max-height: 185px; // Slightly larger on desktop
+        margin-left: -30px;
+        margin-top: 15px;
+      }
+    }
+  }
+
+  &__nav {
+    @media (max-width: $breakpoint-lg - 1px) {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background-color: $white;
+      padding: $spacing-xxl $spacing-lg;
+      transition: right $transition-normal;
+      box-shadow: $shadow-xl;
+
+      &--open {
+        right: 0;
+      }
+    }
+  }
+
+  &__nav-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+
+    @media (max-width: $breakpoint-lg - 1px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $spacing-md;
+      margin-top: $spacing-xl;
+    }
+
+    li {
+      button {
+        background: none;
+        border: none;
+        font-family: $font-family;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+        color: $text-primary;
+        cursor: pointer;
+        padding: $spacing-xs $spacing-sm;
+        border-radius: $border-radius-md;
+        transition: all $transition-normal;
+
+        &:hover {
+          color: $accent;
+          background-color: rgba($accent, 0.1);
+        }
+
+        @media (max-width: $breakpoint-lg - 1px) {
+          font-size: $font-size-base;
+          padding: $spacing-sm 0;
+        }
+      }
+    }
+  }
+
+  &__mobile-toggle {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: $spacing-xs;
+    gap: 4px;
+
+    @media (max-width: $breakpoint-lg - 1px) {
+      display: flex;
+    }
+
+    span {
+      width: 24px;
+      height: 3px;
+      background-color: $primary;
+      border-radius: 2px;
+      transition: all $transition-normal;
+    }
+
+    &--open {
+      span {
+        &:nth-child(1) {
+          transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        &:nth-child(2) {
+          opacity: 0;
+        }
+
+        &:nth-child(3) {
+          transform: rotate(-45deg) translate(6px, -6px);
+        }
+      }
+    }
+  }
+}
+
+// Overlay for mobile menu
+.header__nav--open::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 280px;
+  bottom: 0;
+  background-color: rgba($black, 0.5);
+  z-index: -1;
+
+  @media (min-width: $breakpoint-lg) {
+    display: none;
+  }
+}

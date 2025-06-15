@@ -1,0 +1,62 @@
+.about {
+  background-color: $neutral-light;
+
+  &__content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+
+    @media (max-width: $breakpoint-md) {
+      text-align: center;
+    }
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-xxl;
+
+    h2 {
+      color: $primary;
+      margin-bottom: $spacing-md;
+    }
+  }
+
+  &__divider {
+    width: 60px;
+    height: 3px;
+    background-color: $accent;
+    margin: 0 auto;
+    border-radius: 2px;
+  }
+
+  &__text {
+    margin-bottom: $spacing-xxl;
+
+    p {
+      font-size: $font-size-base;
+      line-height: 1.8;
+      margin-bottom: $spacing-lg;
+      color: $text-secondary;
+
+      &:first-child {
+        color: $text-primary;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .btn {
+    display: block;
+    margin: 0 auto;
+    padding: $spacing-sm $spacing-lg;
+    font-size: $font-size-sm;
+
+    @media (max-width: $breakpoint-sm) {
+      width: 100%;
+      max-width: 220px;
+    }
+  }
+}
